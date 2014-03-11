@@ -8,9 +8,9 @@ import java.io.File
 object ScalaMeterBuild extends Build {
 
   val publishUser = "SONATYPE_USER"
-  
+
   val publishPass = "SONATYPE_PASS"
-  
+
   val userPass = for {
     user <- sys.env.get(publishUser)
     pass <- sys.env.get(publishPass)
@@ -25,17 +25,20 @@ object ScalaMeterBuild extends Build {
   })
 
   val scalaMeterSettings = Defaults.defaultSettings ++ publishCreds ++ Seq(
-    scalaVersion := "2.10.2",
+    scalaVersion := "2.11.0-RC1",
     scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-Xlint"),
     resolvers ++= Seq(
       "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
       "Sonatype OSS Releases" at "https://oss.sonatype.org/content/repositories/releases"
     ),
     libraryDependencies ++= List(
-      "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
+      "org.scalatest" %% "scalatest" % "2.1.0" % "test",
       "jfree" % "jfreechart" % "1.0.12",
       "org.apache.commons" % "commons-math3" % "3.0",
-      "org.scala-tools.testing" % "test-interface" % "0.5"
+      "org.scala-tools.testing" % "test-interface" % "0.5",
+      "org.scala-lang" % "scala-reflect" % "2.11.0-RC1",
+      "org.scala-lang.modules" %% "scala-xml" % "1.0.0",
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.0"
     ),
     publishMavenStyle := true,
     publishTo <<= version { (v: String) =>
@@ -68,14 +71,14 @@ object ScalaMeterBuild extends Build {
         </developer>
       </developers>
   )
-  
+
   /* projects */
-  
+
   lazy val scalameter = Project(
     "scalameter",
     file("."),
     settings = scalaMeterSettings
   ) dependsOn (
   )
-  
+
 }
