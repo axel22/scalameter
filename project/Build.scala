@@ -24,8 +24,8 @@ object ScalaMeterBuild extends Build {
   })
 
   val scalaMeterSettings = Defaults.defaultSettings ++ publishCreds ++ Seq(
-    scalaVersion := "2.10.3",
-    crossScalaVersions := Seq("2.10.3", "2.11.0-RC1"),
+    scalaVersion := "2.11.0-RC3",
+    crossScalaVersions := Seq("2.10.3", "2.11.0-RC3"),
     scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-Xlint"),
     resolvers ++= Seq(
       "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
@@ -67,19 +67,19 @@ object ScalaMeterBuild extends Build {
   def dependencies(scalaVersion: String) = {
     scalaVersion match {
       case "2.10.3" => Seq(
-        "org.scalatest" %% "scalatest" % "2.1.0" % "test",
+        "org.scalatest" %% "scalatest" % "2.1.2" % "test",
         "com.github.wookietreiber" %% "scala-chart" % "0.4.0-SNAPSHOT",
         "org.apache.commons" % "commons-math3" % "3.2",
         "org.scala-tools.testing" % "test-interface" % "0.5"
       )
-      case "2.11.0-RC1" => Seq(
-        "org.scalatest" %% "scalatest" % "2.1.0" % "test",
-        "com.github.wookietreiber" %% "scala-chart" % "0.4.0-SNAPSHOT",
+      case "2.11.0-RC3" => Seq(
+        "org.scalatest" %% "scalatest" % "2.1.2" % "test",
+        "com.github.wookietreiber" %% "scala-chart" % "0.4.0",
         "org.apache.commons" % "commons-math3" % "3.2",
         "org.scala-tools.testing" % "test-interface" % "0.5",
-        "org.scala-lang" % "scala-reflect" % "2.11.0-RC1",
-        "org.scala-lang.modules" %% "scala-xml" % "1.0.0",
-        "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.0"
+        "org.scala-lang" % "scala-reflect" % "2.11.0-RC3",
+        "org.scala-lang.modules" %% "scala-xml" % "1.0.1",
+        "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1"
       )
       case _ => Seq()
     }
